@@ -1,20 +1,11 @@
 class Solution:
     def convertTime(self, current: str, correct: str) -> int:
         if current == correct:return 0
-        x = current.split(':')
-        y = correct.split(':')
-        hourDiff = int(y[0])-int(x[0])
-        mintDiff = int(y[1])-int(x[1])
-        x = hourDiff*60 + mintDiff
+        x = int(current[0:2]) * 60 + int(current[3:])
+        y = int(correct[0:2]) * 60 + int(correct[3:])
+        x = y - x
         count = 0
-        while x!=0:
-            if x-60 >= 0:
-                x-=60
-            elif x-15>=0:
-                x-=15
-            elif x-5>=0:
-                x-=5
-            else:
-                x-=1
-            count+=1
+        for i in [60,15,5,1]:
+            count += x//i
+            x = x % i
         return count
