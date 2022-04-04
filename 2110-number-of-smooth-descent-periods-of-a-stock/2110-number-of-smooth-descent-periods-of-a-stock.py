@@ -1,7 +1,10 @@
 class Solution:
     def getDescentPeriods(self, prices: List[int]) -> int:
-        dp = [1] * len(prices)
+        res =dp = 1
         for i in range(len(prices)-2,-1,-1):
             if prices[i] == prices[i+1]+1:
-                dp[i] = dp[i+1] + 1
-        return sum(dp)
+                dp+=1
+            else:
+                dp=1
+            res+=dp
+        return res
