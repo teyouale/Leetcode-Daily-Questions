@@ -5,9 +5,11 @@ class Solution:
         
 #         Quick Union approch
 
-        def find(x):
+        def find(y):
+            x= y
             while x != root[x]:
                 x = root[x]
+            root[y] = x
             return x
         
         def union(x,y):
