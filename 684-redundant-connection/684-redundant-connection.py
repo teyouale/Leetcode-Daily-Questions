@@ -11,12 +11,11 @@ class Solution:
         def union(x,y):
             rootX = find(x)
             rootY = find(y)
-            if rootX != rootY :
+            if rootX == rootY:
+                return False
+            elif rootX != rootY :
                 root[rootY] = rootX
-        res = []
+                return True
         for x,y in edges:
-            if find(x-1) == find(y-1):
-                res = [x,y]
-            else:
-                union(x-1,y-1)
-        return res
+            if not union(x-1,y-1):
+                return [x,y]
