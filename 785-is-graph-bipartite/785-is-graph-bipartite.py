@@ -1,7 +1,7 @@
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
         def dfs(start):
-            if self.loop: return     #early stop if we found odd cycle
+            if self.loop: return    
 
             for neib in graph[start]:
                 if dist[neib] >= 0 and dist[neib] == dist[start]:
@@ -14,7 +14,7 @@ class Solution:
         self.loop, dist = False, [-1] *(n)
         
         for i in range(n):
-            if self.loop: return False     #early stop if we found odd cycle
+            if self.loop: return False    
             if dist[i] == -1:
                 dist[i] = 0
                 dfs(i)
