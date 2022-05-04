@@ -1,12 +1,35 @@
+from collections import defaultdict
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.word = ''
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    def addWord(self,word):
+        node = self.root
+        for char in word:
+            if char in node.children:
+                node = node.children[char]
+            else:
+                newNode = TrieNode()
+                node.children[char] = newNode
+                node = newNode
+        node.word = word
 class Solution:
     def longestWord(self, words: List[str]) -> str:
-        dct = set()
-        words.sort()
-        ans = ''
+        trie = Trie()
         for word in words:
-            if len(word)==1 or word[:-1] in dct:
-                dct.add(word)
-                if len(word) > len(ans):
-                    ans = word
+            trie.addWord(word)
+        # BFS APPROCH
+        ans = ""
+        bfs = [trie.root]
+        while bfs:
+            curr = bfs.pop()
+            for child in curr.children.values():
+                if child.word :
+                    if len(child.word) > len(ans) or (len(child.word) == len(ans) and child.word<ans):
+                        ans = child.word
+                    bfs.append(child)
         return ans
-        
+                
