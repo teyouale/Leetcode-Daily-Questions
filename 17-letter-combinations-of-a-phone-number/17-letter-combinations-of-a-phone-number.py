@@ -14,16 +14,11 @@ class Solution:
             '8':['t','u','v'],
             '9':['w','x','y','z']
         }
-        temp = dct[digits[0]]
-        if len(digits) == 1:
-            return temp
-        
+        res = dct[digits[0]]
         for i in digits[1:]:
             x = []
-            for k in temp:
+            for k in res:
                 for j in dct[i]:
                     x.append(k+j)
-                    # res.append(k+j)
             res = x[:]
-            temp = x[:]
         return res
