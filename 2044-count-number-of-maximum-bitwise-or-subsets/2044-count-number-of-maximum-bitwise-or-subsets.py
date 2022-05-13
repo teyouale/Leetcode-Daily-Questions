@@ -8,12 +8,10 @@ class Solution:
                 dfs(temp,i+1)
                 temp.pop()
         dfs([],0)
-        y = []
+        y = Counter([])
         for i in res[1:]:
             x = i[0]
             for j in i[1:]:
                 x|=j
-            y.append(x)
-        
-        temp = Counter(y)
-        return temp.most_common(1)[0][1]            
+            y[x]+=1
+        return y.most_common(1)[0][1]            
