@@ -3,4 +3,4 @@ class Solution:
         hashset = set()
         for i in range(k,len(s)+1):
             hashset.add(s[i-k:i])
-        return len(hashset) == 2**k
+        return len(hashset) == 1<<k
