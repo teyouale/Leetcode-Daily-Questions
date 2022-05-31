@@ -1,9 +1,6 @@
 class Solution:
     def hasAllCodes(self, s: str, k: int) -> bool:
-        res , n , w ,i= set(),len(s),1<<k,0
-        while i+k <= n :
-            res.add(s[i:i+k])
-            i+=1
-        return len(res) == w
-
-      
+        hashset = set()
+        for i in range(k,len(s)+1):
+            hashset.add(s[i-k:i])
+        return len(hashset) == 2**k
