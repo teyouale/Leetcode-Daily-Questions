@@ -9,10 +9,9 @@ class Solution:
             curr = s[r]
             if curr not in  res:
                 res.add(curr)
-                ans = max(ans,len(res))
                 r+=1
+                ans = max(ans,len(s[l:r]))
             else:
                 res.remove(s[l])
                 l+=1
-            # print(res,ans,l,r,s[l:r])
-        return ans                
+        return ans
