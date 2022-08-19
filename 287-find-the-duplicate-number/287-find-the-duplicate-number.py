@@ -4,7 +4,7 @@ class Solution:
         for i in nums:
             if i <= current:
                 count+=1
-        return count
+        return count 
     def findDuplicate(self, nums: List[int]) -> int:
         n = len(nums)
         l = 1
@@ -12,7 +12,7 @@ class Solution:
         res = n
         while l <= r:
             mid = l + (r-l)//2
-            
+            count = len([i for i in nums if i <= mid])
             if mid < self.isPossable(mid,nums):
                 res = mid
                 r = mid -1
