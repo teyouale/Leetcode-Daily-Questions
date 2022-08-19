@@ -1,23 +1,19 @@
 class Solution:
-    def isPossable(self,rate,piles,h):
+    def isPossiable(self,current,piles,h):
+        count = 0
         for i in piles:
-            x = math.ceil(i/rate)
-            h-=x
-        if h <0:
-            return False
-        return True
+            count+=math.ceil(i/current)
+        return count <=h
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        n= len(piles)
+        n = len(piles)
         left = 1
         right = max(piles) * math.ceil(n/h) 
-        res = float('inf')
-        while left<=right:
-            mid = (left+right)//2
-            
-            current = self.isPossable(mid,piles,h)
-            if current:
-                right = mid-1
-                res = mid
+        best = right
+        while left <= right:
+            mid = left + (right-left)//2
+            if self.isPossiable(mid,piles,h):
+                right = mid -1
+                best = mid
             else:
-                left = mid+1
-        return res
+                left = mid + 1
+        return best
