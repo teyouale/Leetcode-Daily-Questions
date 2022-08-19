@@ -1,10 +1,4 @@
 class Solution:
-    def isPossable(self,current,nums):
-        count = 0
-        for i in nums:
-            if i <= current:
-                count+=1
-        return count 
     def findDuplicate(self, nums: List[int]) -> int:
         n = len(nums)
         l = 1
@@ -13,7 +7,7 @@ class Solution:
         while l <= r:
             mid = l + (r-l)//2
             count = len([i for i in nums if i <= mid])
-            if mid < self.isPossable(mid,nums):
+            if mid < count:
                 res = mid
                 r = mid -1
             else:
