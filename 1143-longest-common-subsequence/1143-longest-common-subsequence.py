@@ -1,15 +1,13 @@
 class Solution:
     def longestCommonSubsequence(self, s1: str, s2: str) -> int:
-        xm = len(s1)
-        xn = len(s2)
-        res = 0
+        m = len(s1)
+        n = len(s2)
         @lru_cache(None)
         def recc(m,n):
-            nonlocal res
-            if xm == m or xn == n:
+            if m == -1 or n == -1:
                 return 0
             if s1[m] == s2[n]:
-                return 1+recc(m+1,n+1)
+                return  recc(m-1,n-1)+1
             else:
-                return max(recc(m+1,n),recc(m,n+1))
-        return recc(0,0)
+                return max(recc(m-1,n),recc(m,n-1))
+        return recc(m-1,n-1)
