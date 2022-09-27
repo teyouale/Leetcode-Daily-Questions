@@ -10,17 +10,12 @@ class Solution:
                 graph[u].append(v)
                 indegree[v] += 1
         queue = deque([(0, [0])])
-        res = []
         ans = []
-        visted = set()
         while queue:
             curr, path = queue.popleft()
+            if curr == n-1:
+                ans.append(path)
             for ne in graph[curr]:
-                if ne == n-1:
-                    ans.append(path+[ne])
-                if ne not in visted:
-                    visted.add(ne)
-                    queue.append((ne, path+[ne]))
-                    visted.remove(ne)
+                queue.append((ne, path+[ne]))
         # print(ans)
         return ans
