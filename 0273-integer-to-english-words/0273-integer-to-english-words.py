@@ -1,5 +1,7 @@
 class Solution:
     def numberToWords(self, num: int) -> str:
+        if num == 0:
+            return "Zero"
         group = []
         nums = str(num)[::-1]
         n = len(nums)
@@ -37,20 +39,6 @@ class Solution:
             return res
 
         currPower = 0
-        
-        if num  < 11:
-            return count[num]
-        elif num < 100:
-            curr = []
-            i = nums[::-1]
-            if i[0] == '1':
-                curr.append(count[int(i)])
-            else:
-                curr.append(twodigit[int(i[0])])
-                if i[1] != '0':
-                    curr.append(count[int(i[1])])
-            return " ".join(curr)
-        
         res = []
         for i in group:
             curr = []
@@ -61,6 +49,7 @@ class Solution:
             else:
                 if i[0] != '0':
                     curr.append(count[int(i[0])])
+                    
             if currPower != 0 and len(curr) != 0:
                 curr.append(power[currPower])
             currPower+=1
